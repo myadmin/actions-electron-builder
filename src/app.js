@@ -35,7 +35,7 @@ const app = () => {
     return (
         <div style={{ color: '#fff' }}>
             <p>app - {text}</p>
-            <p>下载进度：{progress}%</p>
+            {progress ? <p>下载进度：{progress}%</p> : null}
         </div>
     )
 };
