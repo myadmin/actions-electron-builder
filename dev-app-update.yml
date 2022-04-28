@@ -1,8 +1,3 @@
-version: 1.0.2
-files:
-  - url: ElectronDemo-Web-Setup-1.0.0.exe
-    sha512: F4WSJgWAJO5cgGgZN+BE7Z6uCWLZ5pZTx6BZDlTUuEAs6LyDPdU7H31Sko4/XMG8QPJiL4wtwd+wIQ04JheDmA==
-    size: 60132023
-path: ElectronDemo-Web-Setup-1.0.0.exe
-sha512: F4WSJgWAJO5cgGgZN+BE7Z6uCWLZ5pZTx6BZDlTUuEAs6LyDPdU7H31Sko4/XMG8QPJiL4wtwd+wIQ04JheDmA==
-releaseDate: '2022-04-28T06:34:56.583Z'
+provider: github
+owner: myadmin
+repo: electron-demo

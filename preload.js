@@ -1,13 +1,13 @@
 const { contextBridge, ipcRenderer, remote, shell } = require('electron');
 
 const ipc = {
-    'render': {
+    render: {
         // From render to main.
-        'send': ["toMain", "render-send", "checkForUpdate"],
+        send: ["toMain", "render-send", "checkForUpdate", "isUpdateNow"],
         // From main to render.
-        'receive': ["fromMain", "ping"],
+        receive: ["updateAvailable", "message", "downloadProgress", "checking-for-update", "update-not-available", "isUpdateNow"],
         // From render to main and back again.
-        'sendReceive': []
+        sendReceive: []
     }
 };
 
@@ -25,9 +25,10 @@ contextBridge.exposeInMainWorld('electron', {
         },
         receive: (channel, func) => {
             let validChannels = ipc.render.receive;
+            // console.log('validChannels', validChannels);
             if (validChannels.includes(channel)) {
                 // Deliberately strip event as it includes `sender` 
-                ipcRenderer.on(channel, (event, ...args) => func(...args));
+                ipcRenderer.on(`${channel}`, (event, ...args) => func(...args));
             }
         },
         invoke: (channel, args) => {

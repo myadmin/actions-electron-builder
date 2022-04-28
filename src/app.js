@@ -3,19 +3,41 @@ const { ipcRender } = window.electron;
 
 const app = () => {
     const [text, setText] = useState('');
+    const [progress, setProgress] = useState(0);
 
     useEffect(() => {
-        ipcRender.send('checkForUpdate', 'please update');
-        setTimeout(() => {
-            console.log(123);
-            ipcRender.receive('ping', (data) => {
-                console.log('data', data);
-                setText(data);
-            });
-        }, 3 * 1000);
+        // console.log('ipcRender', ipcRender);
+        ipcRender.receive('downloadProgress', data => {
+            console.log('data: download-progress', data);
+            // setText(data);
+            const progress = parseInt(data.percent, 10);
+            setProgress(progress);
+            if (progress === 100) {
+                ipcRender.send('isUpdateNow');
+            }
+        });
+        // ipcRender.receive('updateAvailable', data => {
+        //     console.log('data-updateAvailable', data);
+        // });
+        // ipcRender.receive('checking-for-update', data => {
+        //     console.log('data-checking-for-update', data);
+        // });
+        // ipcRender.receive('update-not-available', data => {
+        //     console.log('data-update-not-available', data);
+        // });
+        ipcRender.receive('message', data => {
+            console.log('data: message', data);
+            setText(data);
+        });
+        ipcRender.send('checkForUpdate');
     }, []);
 
-    return <div>app - {text}</div>;
+    return (
+        <div style={{ color: '#fff' }}>
+            <p>app - {text}</p>
+            <p>下载进度：{progress}%</p>
+        </div>
+    )
 };
 
 export default app;
