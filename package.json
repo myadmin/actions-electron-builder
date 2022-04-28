@@ -1,6 +1,6 @@
 {
   "name": "electron-demo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "main.js",
   "private": true,
@@ -10,6 +10,8 @@
     "dev": "concurrently \"wait-on http://localhost:3000 && electron .\" \"cross-env BROWSER=none npm start\"",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
+    "release": "electron-builder",
+    "prerelease": "npm run build",
     "prepack": "npm run build",
     "predist": "npm run build"
   },
@@ -26,12 +28,17 @@
       "preload.js"
     ],
     "directories": {
+      "output": "dist",
       "buildResources": "assets"
     },
     "extends": null,
     "mac": {
       "category": "public.app-category.productivity",
-      "artifactName": "${productName}-${version}-${arch}.${ext}"
+      "artifactName": "${productName}-${version}-${arch}.${ext}",
+      "target": [
+        "dmg",
+        "zip"
+      ]
     },
     "dmg": {
       "background": "assets/appdmg.png",
@@ -58,38 +65,48 @@
     "win": {
       "target": [
         "msi",
-        "nsis"
+        "nsis",
+        "zip"
       ],
       "icon": "assest/icon.ico",
-      "artifactName": "${productionName}-Web-Setup-${version}.${ext}",
+      "artifactName": "${productName}-Web-Setup-${version}.${ext}",
       "publisherName": "Electron Demo"
     },
     "nsis": {
       "allowToChangeInstallationDirectory": true,
       "oneClick": false,
       "perMachine": false
-    }
+    },
+    "asar": false,
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "myadmin",
+        "repo": "electron-demo"
+      }
+    ]
   },
   "keywords": [],
   "author": "myadmin",
   "license": "ISC",
   "dependencies": {
-    "electron-is-dev": "^2.0.0"
+    "electron-is-dev": "^2.0.0",
+    "electron-updater": "^5.0.1"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
     "concurrently": "^7.1.0",
     "cross-env": "^7.0.3",
     "electron": "^14.2.9",
     "electron-builder": "^23.0.3",
-    "wait-on": "^6.0.1",
     "is-electron": "^2.2.1",
-    "@testing-library/jest-dom": "^5.16.1",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
+    "wait-on": "^6.0.1",
     "web-vitals": "^2.1.4"
   },
   "browserslist": {

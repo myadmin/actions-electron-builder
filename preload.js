@@ -3,7 +3,7 @@ const { contextBridge, ipcRenderer, remote, shell } = require('electron');
 const ipc = {
     'render': {
         // From render to main.
-        'send': ["toMain", "render-send"],
+        'send': ["toMain", "render-send", "checkForUpdate"],
         // From main to render.
         'receive': ["fromMain", "ping"],
         // From render to main and back again.
