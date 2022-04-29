@@ -90,7 +90,8 @@ autoUpdater.on('update-available', () => {
     //         autoUpdater.downloadUpdate();
     //     }
     // });
-
+    
+    autoUpdater.downloadUpdate();
     sendUpdateMessage(message.updateAva);
 });
 autoUpdater.on('update-not-available', () => {
