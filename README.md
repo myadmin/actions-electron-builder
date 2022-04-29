@@ -1,7 +1,6 @@
 
 ```
 electron-demo
-├─ .DS_Store
 ├─ .npmrc
 ├─ assets
 │  ├─ appdmg.png

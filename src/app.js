@@ -3,6 +3,7 @@ const { ipcRender } = window.electron;
 
 const app = () => {
     const [text, setText] = useState('');
+    const [version, setVersion] = useState('0.0.0');
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
@@ -18,6 +19,7 @@ const app = () => {
         });
         ipcRender.receive("version", (version) => {
             console.log('version', version);
+            setVersion(version);
         });
         ipcRender.send('checkAppVersion');
         // ipcRender.receive('updateAvailable', data => {
@@ -38,8 +40,9 @@ const app = () => {
 
     return (
         <div style={{ color: '#fff' }}>
-            <p>app - {text}</p>
-            <p>下载进度：{progress}%</p>
+            <p>current app version: {version}</p>
+            <p>{text}</p>
+            {progress ? <p>下载进度：{progress}%</p> : null}
         </div>
     )
 };

@@ -1,6 +1,6 @@
 {
   "name": "electron-demo",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "main": "main.js",
   "private": true,
@@ -77,8 +77,9 @@
     "asar": false,
     "publish": [
       {
-        "provider": "generic",
-        "url": "http://localhost:2060"
+        "provider": "github",
+        "owner": "myadmin",
+        "repo": "electron-demo"
       }
     ]
   },
