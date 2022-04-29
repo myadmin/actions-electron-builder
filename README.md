@@ -23,4 +23,6 @@ electron-demo
 
 [Electron应用使用electron-builder配合electron-updater实现自动更新](https://segmentfault.com/a/1190000012904543)
 
-[electron自动更新](https://www.jianshu.com/p/3a06b2039eb4)
+[Electron自动更新1](https://www.jianshu.com/p/3a06b2039eb4)
+
+[Electron自动更新2](https://fex.meishakeji.com/2019/03/24/electron-update/)
