@@ -1,6 +1,6 @@
 {
   "name": "electron-demo",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "",
   "main": "main.js",
   "private": true,
@@ -9,14 +9,17 @@
     "build": "react-scripts build",
     "dev": "concurrently \"wait-on http://localhost:3000 && electron .\" \"cross-env BROWSER=none npm start\"",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder -p always",
+    "dist": "electron-builder",
+    "release": "cross-env GH_TOKEN=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 electron-builder",
+    "prerelease": "npm run build",
     "prepack": "npm run build",
-    "predist": "npm run build",
-    "server": "node server.js"
+    "predist": "npm run build"
   },
   "homepage": "./",
   "build": {
     "appId": "electronDemo",
+    "productName": "ElectronDemo",
+    "copyright": "Copyright @ 2022 ${author}",
     "files": [
       "build/**/*",
       "node_modules/**/*",
@@ -65,9 +68,9 @@
         "nsis",
         "zip"
       ],
-      "verifyUpdateCodeSignature": false,
       "icon": "assest/icon.ico",
-      "artifactName": "${productName}-Web-Setup-${version}.${ext}"
+      "artifactName": "${productName}-Web-Setup-${version}.${ext}",
+      "publisherName": "Electron Demo"
     },
     "nsis": {
       "allowToChangeInstallationDirectory": true,
@@ -77,8 +80,9 @@
     "asar": false,
     "publish": [
       {
-        "provider": "generic",
-        "url": "http://localhost:2060"
+        "provider": "github",
+        "owner": "myadmin",
+        "repo": "electron-demo"
       }
     ]
   },
@@ -87,8 +91,7 @@
   "license": "ISC",
   "dependencies": {
     "electron-is-dev": "^2.0.0",
-    "electron-log": "^4.4.1",
-    "electron-updater": "^4.3.9"
+    "electron-updater": "^5.0.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.1",
@@ -98,8 +101,6 @@
     "cross-env": "^7.0.3",
     "electron": "^14.2.9",
     "electron-builder": "^23.0.3",
-    "electron-notarize": "^1.2.1",
-    "express": "^4.18.0",
     "is-electron": "^2.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

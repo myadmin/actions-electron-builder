@@ -12,10 +12,14 @@ const app = () => {
             // setText(data);
             const progress = parseInt(data.percent, 10);
             setProgress(progress);
-            if (progress === 100) {
-                ipcRender.send('isUpdateNow');
-            }
         });
+        ipcRender.receive("isUpdateNow", () => {
+            ipcRender.send("isUpdateNow");
+        });
+        ipcRender.receive("version", (version) => {
+            console.log('version', version);
+        });
+        ipcRender.send('checkAppVersion');
         // ipcRender.receive('updateAvailable', data => {
         //     console.log('data-updateAvailable', data);
         // });

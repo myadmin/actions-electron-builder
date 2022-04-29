@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
+// const fs = require('fs');
 const isDev = require('electron-is-dev');
 const { autoUpdater } = require("electron-updater");
 
@@ -38,6 +39,16 @@ app.on('window-all-closed', () => {
     app.quit();
 });
 
+// let updaterCacheDirName = 'electron-admin-updater'
+// const updatePendingPath = path.join(autoUpdater.app.baseCachePath, updaterCacheDirName, 'pending')
+// fs.emptyDir(updatePendingPath);
+
+const feedUrl = `http://localhost:2060`; // 更新包位置
+autoUpdater.setFeedURL({
+    provider: 'generic',
+    url: feedUrl
+});
+
 const message = {
     error: '检查更新出错',
     checking: '正在检查更新……',
@@ -52,7 +63,7 @@ const message = {
 // autoUpdater.checkForUpdates();
 autoUpdater.on('error', (error) => {
     // dialog.showErrorBox('Error', err === null ? 'unknown' : err);
-    sendUpdateMessage(message.error);
+    sendUpdateMessage(`${message.error}:${error}`);
 });
 autoUpdater.on('checking-for-update', () => {
     console.log('Checking for update...');
@@ -134,3 +145,7 @@ ipcMain.on("checkForUpdate", () => {
 function sendUpdateMessage(text) {
     mainWindow.webContents.send('message', text)
 }
+
+ipcMain.on("checkAppVersion", () => {
+    mainWindow.webContents.send('version', app.getVersion());
+});

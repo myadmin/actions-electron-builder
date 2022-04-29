@@ -3,9 +3,9 @@ const { contextBridge, ipcRenderer, remote, shell } = require('electron');
 const ipc = {
     render: {
         // From render to main.
-        send: ["toMain", "render-send", "checkForUpdate", "isUpdateNow"],
+        send: ["toMain", "render-send", "checkForUpdate", "isUpdateNow", "checkAppVersion"],
         // From main to render.
-        receive: ["updateAvailable", "message", "downloadProgress", "checking-for-update", "update-not-available", "isUpdateNow"],
+        receive: ["updateAvailable", "message", "downloadProgress", "checking-for-update", "update-not-available", "isUpdateNow", "version"],
         // From render to main and back again.
         sendReceive: []
     }
