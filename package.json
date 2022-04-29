@@ -3,13 +3,15 @@
   "version": "1.0.5",
   "description": "",
   "main": "main.js",
-  "private": false,
+  "private": true,
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "dev": "concurrently \"wait-on http://localhost:3000 && electron .\" \"cross-env BROWSER=none npm start\"",
     "pack": "electron-builder --dir",
     "dist": "electron-builder -p always",
+    "release": "cross-env GH_TOKEN= electron-builder -p always",
+    "prerelease": "npm run build",
     "prepack": "npm run build",
     "predist": "npm run build",
     "server": "node server.js"
