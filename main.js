@@ -48,6 +48,13 @@ app.on('window-all-closed', () => {
 //     provider: 'generic',
 //     url: feedUrl
 // });
+// autoUpdater.setFeedURL({
+//     provider: 'github',
+//     repo: 'electron-demo',
+//     owner: 'myadmin',
+//     private: true,
+//     token: ''
+// });
 
 const message = {
     error: '检查更新出错',

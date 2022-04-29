@@ -1,9 +1,9 @@
 {
   "name": "electron-demo",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "main.js",
-  "private": true,
+  "private": false,
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -17,6 +17,7 @@
   "homepage": "./",
   "build": {
     "appId": "electronDemo",
+    "productName": "electron-demo",
     "files": [
       "build/**/*",
       "node_modules/**/*",
