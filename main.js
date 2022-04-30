@@ -145,6 +145,18 @@ ipcMain.on('render-send', (event, arg) => {
     }).catch(err => {
         console.log(err)
     });
+    // dialog.showMessageBox({
+    //     type: 'info',
+    //     title: '应用有新的更新',
+    //     message: '发现新版本，是否现在更新？',
+    //     buttons: ['是', '否']
+    // }).then(({ response }) => {
+    //     if (response === 0) {
+    //         mainWindow.webContents.send('updateAvailable', '点击了是');
+    //         sendUpdateMessage(message.updateAva);
+    //         autoUpdater.downloadUpdate();
+    //     }
+    // });
 });
 
 ipcMain.on("checkForUpdate", () => {

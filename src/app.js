@@ -22,9 +22,9 @@ const app = () => {
             setVersion(version);
         });
         ipcRender.send('checkAppVersion');
-        // ipcRender.receive('updateAvailable', data => {
-        //     console.log('data-updateAvailable', data);
-        // });
+        ipcRender.receive('updateAvailable', data => {
+            console.log('data-updateAvailable', data);
+        });
         // ipcRender.receive('checking-for-update', data => {
         //     console.log('data-checking-for-update', data);
         // });
@@ -35,7 +35,6 @@ const app = () => {
             console.log('data: message', data);
             setText(data);
         });
-        ipcRender.send('checkForUpdate');
     }, []);
 
     return (
