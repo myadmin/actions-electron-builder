@@ -1,10 +1,12 @@
 {
   "name": "electron-demo",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "main": "main.js",
   "private": true,
   "scripts": {
+    "sign-dev-electron-app": "codesign --deep --force --verbose --sign - node_modules/electron/dist/Electron.app",
+    "postinstall": "npm run sign-dev-electron-app",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "dev": "concurrently \"wait-on http://localhost:3000 && electron .\" \"cross-env BROWSER=none npm start\"",

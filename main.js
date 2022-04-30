@@ -78,21 +78,21 @@ autoUpdater.on('checking-for-update', () => {
     sendUpdateMessage(message.checking);
 });
 autoUpdater.on('update-available', () => {
-    // dialog.showMessageBox({
-    //     type: 'info',
-    //     title: '应用有新的更新',
-    //     message: '发现新版本，是否现在更新？',
-    //     buttons: ['是', '否']
-    // }, (buttonIndex) => {
-    //     if (buttonIndex === 0) {
-    //         // mainWindow.webContents.send('updateAvailable', '点击了是');
-    //         sendUpdateMessage(message.updateAva);
-    //         autoUpdater.downloadUpdate();
-    //     }
-    // });
+    dialog.showMessageBox({
+        type: 'info',
+        title: '应用有新的更新',
+        message: '发现新版本，是否现在更新？',
+        buttons: ['是', '否']
+    }).then(({ response }) => {
+        if (response === 0) {
+            // mainWindow.webContents.send('updateAvailable', '点击了是');
+            autoUpdater.downloadUpdate();
+            sendUpdateMessage(message.updateAva);
+        }
+    });
     
-    autoUpdater.downloadUpdate();
-    sendUpdateMessage(message.updateAva);
+    // autoUpdater.downloadUpdate();
+    // sendUpdateMessage(message.updateAva);
 });
 autoUpdater.on('update-not-available', () => {
     // dialog.showMessageBox({
@@ -110,25 +110,25 @@ autoUpdater.on('download-progress', (progress) => {
     mainWindow.webContents.send('downloadProgress', progress);
     mainWindow.setProgressBar(progress.percent / 100);
 });
-// autoUpdater.on('update-downloaded', () => {
-//     dialog.showMessageBox({
-//         title: '安装更新',
-//         message: '更新下载完毕，应用将重启并进行安装'
-//     }, () => {
-//         setImmediate(() => autoUpdater.quitAndInstall());
-//     });
-// });
-
-autoUpdater.on('update-downloaded', function (event, releaseNotes, releaseName, releaseDate, updateUrl, quitAndUpdate) {
-    console.log('更新完成')
-    ipcMain.on('isUpdateNow', (e, arg) => {
-        console.log("开始更新");
-        //some code here to handle event
-        autoUpdater.quitAndInstall();
+autoUpdater.on('update-downloaded', () => {
+    dialog.showMessageBox({
+        title: '安装更新',
+        message: '更新下载完毕，应用将重启并进行安装'
+    }).then(() => {
+        setImmediate(() => autoUpdater.quitAndInstall());
     });
-
-    mainWindow.webContents.send('isUpdateNow')
 });
+
+// autoUpdater.on('update-downloaded', function (event, releaseNotes, releaseName, releaseDate, updateUrl, quitAndUpdate) {
+//     console.log('更新完成')
+//     ipcMain.on('isUpdateNow', (e, arg) => {
+//         console.log("开始更新");
+//         //some code here to handle event
+//         autoUpdater.quitAndInstall();
+//     });
+
+//     mainWindow.webContents.send('isUpdateNow')
+// });
 
 ipcMain.on('render-send', (event, arg) => {
     // console.log('event', event);
