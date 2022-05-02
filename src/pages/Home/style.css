@@ -1,0 +1,30 @@
+.box-center {
+    position: relative;
+    width: 800px;
+    height: 800px;
+    overflow: hidden;
+}
+.nav {
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    top: 0;
+    left: 0;
+    text-align: center;
+}
+.nav .btn {
+    width: 100px;
+}
+.nav .level {
+    width: 40px;
+    height: 18px;
+    text-align: center;
+}
+.nav .go-btn{
+    width: 40px;
+    height: 24px;
+}
+#myCanv {
+    background-color: #3871a2;
+    overflow: hidden;
+}

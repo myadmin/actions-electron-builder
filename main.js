@@ -8,8 +8,11 @@ let mainWindow;
 
 const createWindow = () => {
     mainWindow = new BrowserWindow({
-        width: 1000,
-        height: 660,
+        width: 802,
+        height: 824,
+        useContentSize: false,
+        // frame: false,
+        resizable: false,
         webPreferences: {
             nodeIntegration: false,
             contextIsolation: true,
@@ -21,7 +24,7 @@ const createWindow = () => {
     let urlLocation = isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, './build/index.html')}`;
 
     if (isDev) {
-        mainWindow.webContents.openDevTools();
+        // mainWindow.webContents.openDevTools();
     }
 
     mainWindow.loadURL(urlLocation);
