@@ -4,6 +4,8 @@ const path = require('path');
 const isDev = require('electron-is-dev');
 const { autoUpdater } = require("electron-updater");
 
+process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
+
 let mainWindow;
 
 const createWindow = () => {
@@ -66,9 +68,9 @@ const message = {
     updateNotAva: '现在使用的就是最新版本，不用更新',
 };
 
-// if (isDev) {
-//     autoUpdater.updateConfigPath = path.join(__dirname, 'dev-app-update.yml');
-// }
+if (isDev) {
+    autoUpdater.updateConfigPath = path.join(__dirname, 'dev-app-update.yml');
+}
 autoUpdater.autoDownload = false;
 // autoUpdater.checkForUpdates();
 autoUpdater.on('error', (error) => {
@@ -93,7 +95,7 @@ autoUpdater.on('update-available', () => {
             sendUpdateMessage(message.updateAva);
         }
     });
-    
+
     // autoUpdater.downloadUpdate();
     // sendUpdateMessage(message.updateAva);
 });

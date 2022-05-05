@@ -27,6 +27,7 @@ const app = () => {
             console.log('data: message', data);
             setText(data);
         });
+        ipcRender.send('checkForUpdate');
     }, []);
 
     return (

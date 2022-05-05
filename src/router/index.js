@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
 import Layout from '../pages/Layout';
+const CheckUpdate = lazy(() => import('../checkUpdate'));
 const Home = lazy(() => import('../pages/Home'));
 
 const lazyLoad = (children) => {
@@ -13,8 +14,12 @@ const router = [
         children: [
             {
                 index: true,
-                element: lazyLoad(<Home />),
+                element: lazyLoad(<CheckUpdate />),
             },
+            {
+                path: '/home',
+                element: lazyLoad(<Home />),
+            }
         ],
     },
 ];

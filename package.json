@@ -1,13 +1,13 @@
 {
   "name": "electron-demo",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "",
   "main": "main.js",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "dev": "concurrently \"wait-on http://localhost:3000 && ELECTRON_DISABLE_SECURITY_WARNINGS=true electron .\" \"cross-env BROWSER=none npm start\"",
+    "dev": "concurrently \"wait-on http://localhost:3000 && electron .\" \"cross-env BROWSER=none npm start\"",
     "pack": "electron-builder --dir",
     "dist": "electron-builder -p always",
     "release": "cross-env GH_TOKEN= electron-builder -p always",
