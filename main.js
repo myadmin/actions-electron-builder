@@ -2,9 +2,9 @@ const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
 // const fs = require('fs');
 const isDev = require('electron-is-dev');
-const { autoUpdater } = require("electron-updater");
+const { autoUpdater } = require('electron-updater');
 
-process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
+process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 
 let mainWindow;
 
@@ -127,7 +127,7 @@ autoUpdater.on('update-downloaded', () => {
 // autoUpdater.on('update-downloaded', function (event, releaseNotes, releaseName, releaseDate, updateUrl, quitAndUpdate) {
 //     console.log('更新完成')
 //     ipcMain.on('isUpdateNow', (e, arg) => {
-//         console.log("开始更新");
+//         console.log('开始更新');
 //         //some code here to handle event
 //         autoUpdater.quitAndInstall();
 //     });
@@ -164,7 +164,7 @@ ipcMain.on('render-send', (event, arg) => {
     // });
 });
 
-ipcMain.on("checkForUpdate", () => {
+ipcMain.on('checkForUpdate', () => {
     //放外面的话启动客户端执行自动更新检查
     autoUpdater.checkForUpdates();
 });
@@ -173,6 +173,6 @@ function sendUpdateMessage(text) {
     mainWindow.webContents.send('message', text)
 }
 
-ipcMain.on("checkAppVersion", () => {
+ipcMain.on('checkAppVersion', () => {
     mainWindow.webContents.send('version', app.getVersion());
 });
