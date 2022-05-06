@@ -1,6 +1,6 @@
 {
   "name": "electron-demo",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "",
   "main": "main.js",
   "private": true,
@@ -78,6 +78,13 @@
       "perMachine": false
     },
     "asar": false,
+    "linux": {
+      "target": [
+        "deb",
+        "AppImage"
+      ]
+    },
+    "deb": {},
     "publish": [
       {
         "provider": "github",
