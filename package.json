@@ -94,7 +94,10 @@
     ]
   },
   "keywords": [],
-  "author": "myadmin",
+  "author": {
+    "name": "myadmin",
+    "email": "yang16829@163.com"
+  },
   "license": "ISC",
   "dependencies": {
     "electron-is-dev": "^2.0.0",
