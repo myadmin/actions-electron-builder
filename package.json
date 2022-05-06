@@ -83,7 +83,7 @@
         "deb",
         "AppImage"
       ],
-      "icon": "assest/icon.ico",
+      "icon": "assest/icon.ico"
     },
     "publish": [
       {
