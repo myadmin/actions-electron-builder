@@ -82,9 +82,9 @@
       "target": [
         "deb",
         "AppImage"
-      ]
+      ],
+      "icon": "assest/icon.ico",
     },
-    "deb": {},
     "publish": [
       {
         "provider": "github",
